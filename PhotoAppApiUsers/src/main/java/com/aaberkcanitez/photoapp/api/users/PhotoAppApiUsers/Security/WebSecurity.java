@@ -35,14 +35,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .addFilter(getAuthenticationFilter());
         //normalde permitall değil, ip'ye göre çekiyoruz, sonra da
         // .and()
-        // .addFilter(geetAuthenticationFilter()); diyoruz.
+        // .addFilter(getAuthenticationFilter()); diyoruz.
         http.headers().frameOptions().disable();
     }
     private AuthenticationFilter getAuthenticationFilter() throws Exception{
         AuthenticationFilter authenticationFilter = new AuthenticationFilter(this.userService, this.environment, authenticationManager());
         //authenticationFilter.setAuthenticationManager(authenticationManager());
         authenticationFilter.setFilterProcessesUrl(environment.getProperty("login.url.path"));
-        
+
         return authenticationFilter;
     }
 
